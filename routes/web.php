@@ -14,16 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'home')
-    ->middleware(['auth'])
+    ->middleware(['auth', 'verified'])
     ->name('home');
 
 Route::view('/friends', 'friends')
-    ->middleware(['auth'])
-    ->name('friends');
-
-Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+    ->name('friends');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
