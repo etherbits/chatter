@@ -9,8 +9,11 @@
             <div class="flex gap-8">
                 @foreach ($chats as $chat)
                     <a href={{"/chats/$chat->id"}}>
-                        <div class="flex w-48 px-6 py-4 bg-white rounded-lg shadow">
+                        <div class="flex flex-col w-48 px-6 py-4 bg-white rounded-lg shadow gap-2">
                             <h1 class="text-center w-full uppercase">{{ $chat->name }}</h1>
+                            <span class="text-slate-600 text-center text-sm">
+                                {{$chat->created_at->format('j F, Y')}}
+                            </span>
                         </div>
                     </a>
                 @endforeach
