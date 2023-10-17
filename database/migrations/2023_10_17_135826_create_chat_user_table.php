@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_chats', function (Blueprint $table) {
-            $table->ulid("id");
-            $table->foreignUlid('user_id');
+        Schema::create('chat_user', function (Blueprint $table) {
+            $table->foreignId('user_id');
             $table->foreignUlid('chat_id');
             $table->timestamps();
         });
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_chats');
+        Schema::dropIfExists('chat_user');
     }
 };

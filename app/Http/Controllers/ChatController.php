@@ -14,13 +14,15 @@ class ChatController extends Controller
     }
 
     public function store(Request $req){
-        // dd($req->user()->name);
+        // dd($req->user()->id);
         $chatName = $req->chatName;
 
         $chat = new Chat;
         $chat->name = $chatName;
         $chat->is_group = true;
         $chat->save();
+
+        $chat->users()->attach($req->user()->id);
 
         return redirect("/");
     }
