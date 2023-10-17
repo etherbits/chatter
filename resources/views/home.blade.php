@@ -1,15 +1,14 @@
 <x-app-layout>
-    <x-slot name="header">
-        {{ __('Home') }}
-    </x-slot>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
+            <form action="/chats" method="post">
+                @csrf
+                <input placeholder="friends group" name="chatName"/>
+                <button class="px-3 py-2 bg-indigo-500 text-slate-50 w-fit rounded-sm">Add Chat</button>
+            </form>
+            @foreach ($chats as $chat)
+                <p>{{ $chat->name }}</p>
+            @endforeach
         </div>
     </div>
 </x-app-layout>

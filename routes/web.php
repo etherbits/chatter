@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ChatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'home')
-    ->middleware(['auth', 'verified'])
-    ->name('home');
-
 Route::view('/friends', 'friends')
     ->middleware(['auth', 'verified'])
     ->name('friends');
@@ -24,5 +21,9 @@ Route::view('/friends', 'friends')
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
+
+Route::get("/", [ChatController::class, 'index'])->middleware(['auth', 'verified'])->name("home");
+
+Route::post("/chats", [ChatController::class, 'store'])->middleware(['auth', 'verified']);
 
 require __DIR__ . '/auth.php';
