@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('messages', function (Blueprint $table) {
-            $table->id();
+            $table->ulid('id')->index();
+            $table->foreignUlid('chat_id');
+            $table->string('content');
             $table->timestamps();
         });
     }
