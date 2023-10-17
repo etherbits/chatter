@@ -23,6 +23,7 @@ Route::view('profile', 'profile')
     ->name('profile');
 
 Route::get("/", [ChatController::class, 'index'])->middleware(['auth', 'verified'])->name("home");
+Route::get("/chats/{chat}", [ChatController::class, 'show'])->middleware(['auth', 'verified']);
 
 Route::post("/chats", [ChatController::class, 'store'])->middleware(['auth', 'verified']);
 

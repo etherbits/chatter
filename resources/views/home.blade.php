@@ -8,9 +8,11 @@
             </form>
             <div class="flex gap-8">
                 @foreach ($chats as $chat)
-                    <div class="flex w-48 px-6 py-4 bg-white rounded-lg shadow-md">
-                        <h1 class="text-center w-full uppercase">{{ $chat->name }}</h1>
-                    </div>
+                    <a href={{"/chats/$chat->id"}}>
+                        <div class="flex w-48 px-6 py-4 bg-white rounded-lg shadow">
+                            <h1 class="text-center w-full uppercase">{{ $chat->name }}</h1>
+                        </div>
+                    </a>
                 @endforeach
             </div>
         </div>

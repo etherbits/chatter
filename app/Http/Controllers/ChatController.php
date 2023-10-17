@@ -13,6 +13,10 @@ class ChatController extends Controller
         return view('home', ['chats' => $chats]);
     }
 
+    public function show(Chat $chat){
+        return view("chat", ['chat' => $chat]);
+    }
+
     public function store(Request $req){
         // dd($req->user()->id);
         $chatName = $req->chatName;
