@@ -11,9 +11,13 @@
                     </div>
                     <div class="flex flex-col flex-grow">
                         <p>start</p>
+                        @foreach ($chat->messages as $message)
+                            <p>{{$message->content}}</p>
+                        @endforeach
                     </div>
-                    <form class="flex gap-4">
-                        <x-text-input class="w-full" placeholder="messsage..."/>
+                    <form action={{"/messages/$chat->id"}} method="POST" class="flex gap-4">
+                        @csrf
+                        <x-text-input class="w-full" placeholder="messsage..." name="content"/>
                         <x-primary-button>Send</x-primary-button>
                     </form>
                 </div>

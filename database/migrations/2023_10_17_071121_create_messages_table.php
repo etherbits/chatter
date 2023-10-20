@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->ulid('id')->index();
             $table->foreignUlid('chat_id');
+            $table->foreignUlid('user_id');
             $table->string('content');
             $table->timestamps();
         });

@@ -18,7 +18,6 @@ class ChatController extends Controller
     }
 
     public function store(Request $req){
-        // dd($req->user()->id);
         $chatName = $req->chatName;
 
         $chat = new Chat;
