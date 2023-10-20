@@ -9,10 +9,12 @@
                         </a>
                         <h1 class="text-xl font-bold">{{ __($chat->name) }}</h1>
                     </div>
-                    <div class="flex flex-col flex-grow">
-                        <p>start</p>
+                    <div class="flex flex-col flex-grow gap-4">
                         @foreach ($chat->messages as $message)
-                            <p>{{$message->content}}</p>
+                            <div class="flex gap-2 bg-indigo-300 text-black px-3 py-2 rounded-md">
+                                <span>{{$user->name}}</span> |
+                                <p>{{$message->content}}</p>
+                            </div>
                         @endforeach
                     </div>
                     <form action={{"/messages/$chat->id"}} method="POST" class="flex gap-4">

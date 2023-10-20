@@ -13,8 +13,8 @@ class ChatController extends Controller
         return view('home', ['chats' => $chats]);
     }
 
-    public function show(Chat $chat){
-        return view("chat", ['chat' => $chat]);
+    public function show(Request $req, Chat $chat){
+        return view("chat", ['chat' => $chat, 'user' => $req->user()]);
     }
 
     public function store(Request $req){
