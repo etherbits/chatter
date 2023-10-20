@@ -15,7 +15,7 @@ class ChatController extends Controller
     }
 
     public function show(Request $req, Chat $chat){
-        return view("chat", ['chat' => $chat, 'user' => $req->user()]);
+        return view("chat", ['chat' => $chat, 'user_id' => $req->user()->id]);
     }
 
     public function addUser(Request $req, Chat $chat){

@@ -38,11 +38,21 @@
                             <x-lucide-plus class="w-6 h-6 stroke-gray-700 group-hover:stroke-black" />
                         </button>
                     </div>
-                    <div class="flex flex-col flex-grow gap-4">
+                    <div class="flex flex-col flex-grow gap-6 items-start">
                         @foreach ($chat->messages as $message)
-                            <div class="flex gap-2 bg-indigo-300 text-black px-3 py-2 rounded-md">
-                                <span>{{$message->user->name}}</span> |
-                                <p>{{$message->content}}</p>
+                            @php
+                                $isSender = $message->user->id == $user_id;
+                            @endphp
+                            <div @class([ "flex flex-col gap-1", "ml-auto items-end" => !$isSender])>
+                                <div>
+                                    <span class="text-gray-700">{{$message->user->name}}</span>
+                                    <span class="text-sm text-gray-500">{{$message->created_at->format("j/m/y h:m:s")}} UTC</span>
+                                </div>
+                                <div @class(["flex gap-2 px-3 py-2 rounded-md shadow-md w-fit",
+                                            "text-black" => $isSender,
+                                            "bg-indigo-500 text-white" => !$isSender])>
+                                    <p>{{$message->content}}</p>
+                                </div>
                             </div>
                         @endforeach
                     </div>
