@@ -9,18 +9,19 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use App\Models\Chat;
 
-class MessageCreated implements ShouldBroadcast
+class ChatUpdated implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
      * Create a new event instance.
      */
-    public function __construct()
+    public function __construct(public Chat $chat)
     {
-        //
     }
+
 
     /**
      * Get the channels the event should broadcast on.
@@ -29,6 +30,8 @@ class MessageCreated implements ShouldBroadcast
      */
     public function broadcastOn(): array
     {
-        return [new Channel('messages')];
+        return [
+            new PrivateChannel('chats.'.$this->chat->id),
+        ];
     }
 }

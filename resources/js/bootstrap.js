@@ -31,6 +31,8 @@ window.Echo = new Echo({
     enabledTransports: ['ws', 'wss'],
 });
 
-window.Echo.channel("messages").listen("MessageCreated", (e) => {
-    window.location.reload();
-});
+
+// Echo.channel(`chats.${this.chat.id}`)
+//     .listen('ChatUpdate', (e) => {
+//         console.log(e.chat.id);
+//     });
