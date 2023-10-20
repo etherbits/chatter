@@ -12,7 +12,7 @@
                     <div class="flex flex-col flex-grow gap-4">
                         @foreach ($chat->messages as $message)
                             <div class="flex gap-2 bg-indigo-300 text-black px-3 py-2 rounded-md">
-                                <span>{{$user->name}}</span> |
+                                <span>{{$message->user->name}}</span> |
                                 <p>{{$message->content}}</p>
                             </div>
                         @endforeach
