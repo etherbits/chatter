@@ -1,5 +1,5 @@
 <x-app-layout >
-    <div class="flex flex-col py-12 flex-grow items-center" x-data="{ open: false }">
+    <div class="flex flex-grow py-12 justify-center" x-data="{ open: false }">
         <template x-teleport="body">
             <div x-show="open" class="left-0 top-0 fixed w-screen h-screen bg-black/50 flex justify-center items-center">
                 <form method="POST"  @click.outside="open = false" class="flex flex-col gap-4 w-80 h-fit bg-white p-6 rounded-lg" action={{"/chats/$chat->id/add-user"}}>
@@ -18,8 +18,8 @@
                 </form>
             </div>
         </template>
-        <div class="flex flex-col flex-grow max-w-7xl w-full items-center sm:px-6 lg:px-8">
-            <div class="flex flex-col flex-grow flex-col bg-white w-full bg-gray-800 overflow-hidden shadow-md sm:rounded-lg">
+        <div class="flex flex-grow max-w-7xl w-full sm:px-6 lg:px-8">
+            <div class="flex flex-grow bg-white w-full bg-gray-800 overflow-hidden shadow-md sm:rounded-lg">
                 <div class="flex flex-col py-8 px-10 text-gray-900 text-gray-100 flex-grow gap-6">
                     <div class="flex items-center gap-4">
                         <a class="flex items-center justify-center rounded-md w-8 h-8 hover:bg-gray-200 group transition cursor-pointer" href={{url()->previous()}}>
@@ -38,8 +38,8 @@
                             <x-lucide-plus class="w-6 h-6 stroke-gray-700 group-hover:stroke-black" />
                         </button>
                     </div>
-                    <div class="flex flex-col flex-grow gap-6 items-start">
-                        @foreach ($chat->messages as $message)
+                    <div class="flex flex-col-reverse h-full gap-6 items-start overflow-auto px-4 py-2">
+                        @foreach ($chat->messages->sortDesc() as $message)
                             @php
                                 $isSender = $message->user->id == $user_id;
                             @endphp

@@ -17,7 +17,7 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="flex flex-col min-h-screen bg-gray-100 bg-gray-50">
+    <div class="flex flex-col h-screen bg-gray-100 bg-gray-50">
         <livewire:layout.navigation />
 
         <!-- Page Heading -->
@@ -33,8 +33,8 @@
         @endif
 
         <!-- Page Content -->
-        <main class="flex flex-col flex-grow">
-            {{ $slot }}
+        <main class="flex flex-grow overflow-hidden">
+            {{$slot}}
         </main>
     </div>
 </body>
