@@ -27,6 +27,7 @@ Route::get("/", [ChatController::class, 'index'])->middleware(['auth', 'verified
 Route::get("/chats/{chat}", [ChatController::class, 'show'])->middleware(['auth', 'verified']);
 
 Route::post("/chats", [ChatController::class, 'store'])->middleware(['auth', 'verified']);
+Route::post("/chats/{chat}/add-user", [ChatController::class, 'addUser'])->middleware(['auth', 'verified']);
 Route::post("/messages/{chat}", [MessageController::class, 'store'])->middleware(['auth', 'verified']);
 
 require __DIR__ . '/auth.php';

@@ -2,7 +2,7 @@
     <div class="flex flex-col py-12 flex-grow items-center" x-data="{ open: false }">
         <template x-teleport="body">
             <div x-show="open" class="left-0 top-0 fixed w-screen h-screen bg-black/50 flex justify-center items-center">
-                <form method="POST"  @click.outside="open = false" class="flex flex-col gap-4 w-80 h-fit bg-white p-6 rounded-lg" action={{"/messages/$chat->id"}}>
+                <form method="POST"  @click.outside="open = false" class="flex flex-col gap-4 w-80 h-fit bg-white p-6 rounded-lg" action={{"/chats/$chat->id/add-user"}}>
                     @csrf
                     <div class="relative">
                         <h2 class="text-center text-xl font-bold">Add User To Chat</h2>
@@ -11,8 +11,8 @@
                         </button>
                     </div>
                     <div class="flex flex-col gap-2">
-                        <label for="username" class="text-lg">Username</label>
-                        <x-text-input class="w-full" placeholder="John Smith" id="username" name="username"/>
+                        <label for="name" class="text-lg">Name</label>
+                        <x-text-input class="w-full" placeholder="John Smith" id="name" name="name"/>
                     </div>
                     <button class="text-base px-3 py-2 bg-gray-800 text-white hover:bg-gray-700 rounded-md">Add User</button>
                 </form>
@@ -26,6 +26,13 @@
                             <x-lucide-chevron-left class="w-6 h-6 stroke-gray-700 group-hover:stroke-black" />
                         </a>
                         <h1 class="text-xl font-bold">{{ __($chat->name) }}</h1>
+                        <div class="flex gap-2">
+                        @foreach ($chat->users as $user)
+                            <div class="flex gap-2 text-black bg-neutral-100 px-3 py-2 rounded-md">
+                                <span>{{$user->name}}</span>
+                            </div>
+                        @endforeach
+                        </div>
                         <button @click="open = !open" class="flex gap-2 ml-auto rounded-md px-3 py-2 hover:bg-gray-200 group transition cursor-pointer">
                             Add User
                             <x-lucide-plus class="w-6 h-6 stroke-gray-700 group-hover:stroke-black" />
